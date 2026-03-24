@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ember: #F97316;
+    --gold:  #A78BFA;
+    --ink:   #0D0B14;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-ink-900 text-cream font-outfit antialiased overflow-x-hidden;
+    cursor: none;
+  }
+  ::selection { background: #F97316; color: white; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0D0B14; }
+  ::-webkit-scrollbar-thumb { background: #A78BFA; border-radius: 9999px; }
+  * { box-sizing: border-box; }
+}
+
+@layer components {
+  /* Orange primary button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-ember text-white font-outfit font-semibold
+      text-sm tracking-wide rounded-full transition-all duration-300
+      hover:bg-ember-dark hover:-translate-y-0.5
+      active:translate-y-0;
+    box-shadow: 0 0 0 0 rgba(249,115,22,0);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 8px 30px rgba(249,115,22,0.45);
+  }
+
+  /* Ghost secondary button */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 bg-transparent text-cream font-outfit font-semibold
+      text-sm tracking-wide border border-white/20 rounded-full transition-all duration-300
+      hover:-translate-y-0.5;
+  }
+  .btn-secondary:hover {
+    border-color: rgba(167,139,250,0.6);
+    color: #C4B5FD;
+  }
+
+  .card-glass {
+    @apply bg-white/[0.03] border border-white/[0.07] rounded-2xl backdrop-blur-sm;
+  }
+
+  /* Lavender + orange gradient border */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(#13101E, #13101E) padding-box,
+      linear-gradient(135deg, rgba(249,115,22,0.6), rgba(167,139,250,0.4), rgba(249,115,22,0.15)) border-box;
+    border: 1.5px solid transparent;
+    border-radius: 20px;
+  }
+
+  /* Dark input with lavender focus */
+  .input-dark {
+    @apply w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-cream text-sm font-outfit
+      placeholder:text-white/25 outline-none transition-all duration-200;
+  }
+  .input-dark:focus {
+    border-color: rgba(167,139,250,0.6);
+    background: rgba(167,139,250,0.05);
+    box-shadow: 0 0 0 3px rgba(167,139,250,0.1);
+  }
+}
+
+@layer utilities {
+  .animation-delay-100  { animation-delay: 100ms; }
+  .animation-delay-200  { animation-delay: 200ms; }
+  .animation-delay-300  { animation-delay: 300ms; }
+  .animation-delay-400  { animation-delay: 400ms; }
+  .animation-fill-forwards { animation-fill-mode: forwards; }
+}
+
+/* Custom cursor: orange dot, lavender ring */
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: #F97316;
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%,-50%);
+  transition: width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1.5px solid rgba(167,139,250,0.6);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 99998;
+  transform: translate(-50%,-50%);
+  transition: all 0.18s cubic-bezier(0.16,1,0.3,1);
+}
+.cursor-dot.hovered  { width: 14px; height: 14px; background: #A78BFA; }
+.cursor-ring.hovered { width: 48px; height: 48px; border-color: rgba(249,115,22,0.5); }
+
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* Ticker bar */
+.ticker-content {
+  display: flex; white-space: nowrap;
+  animation: ticker 28s linear infinite;
+}
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Marquee */
+.marquee-track {
+  display: flex; gap: 12px;
+  animation: ticker 32s linear infinite;
+  width: max-content;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Lavender glow on hero orbs */
+.hero-glow-lavender {
+  background: radial-gradient(circle, rgba(167,139,250,0.15) 0%, transparent 70%);
+}
+.hero-glow-orange {
+  background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%);
+}

@@ -1,0 +1,15 @@
+{
+  "name": "slokane-website",
+  "version": "3.0.0",
+  "description": "SlokaNE Official Website – React + Tailwind + Node.js SQLite Backend",
+  "private": true,
+  "scripts": {
+    "install:all": "cd frontend && npm install && cd ../backend && npm install",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && node server.js"
+  },
+  "author": "SlokaNE",
+  "license": "ISC"
+}
