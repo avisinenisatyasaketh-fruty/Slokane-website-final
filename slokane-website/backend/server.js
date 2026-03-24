@@ -23,12 +23,12 @@ const ordersRouter  = require('./routes/orders');
 const adminRouter   = require('./routes/admin');
 
 const app  = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 10000;
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
     ? false
-    : ['http://localhost:5173', 'http://localhost:3001'],
+    : ['http://localhost:5173', 'http://localhost:10000'],
   credentials: true,
 }));
 app.use(express.json());
